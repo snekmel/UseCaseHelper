@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,19 +16,12 @@ namespace UC_Helper.Models
         private string _beschrijving;
         private string _uitzonderingen;
         private string _resultaat;
-        private int _y;
-        private int _x;
+        private Point _pointer;
 
-        public int X
+        public Point Pointer
         {
-            get { return _x; }
-            set { _x = value; }
-        }
-
-        public int Y
-        {
-            get { return _y; }
-            set { _y = value; }
+            get { return _pointer; }
+            set { _pointer = value; }
         }
 
         public string Resultaat

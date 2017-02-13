@@ -21,7 +21,6 @@ namespace UC_Helper
         public MainScreen()
         {
             InitializeComponent();
-
             _actorenLijst = new List<Actor>();
             _usecaseLijst = new List<UseCase>();
             _brush = new SolidBrush(Color.DarkBlue);
@@ -39,11 +38,7 @@ namespace UC_Helper
                     Actor newActor = new Actor("Actornaam");
 
                     Point pointer = PointToClient(Cursor.Position);
-                    MessageBox.Show(pointer.ToString());
-
-                    //Geef de positie
-                    newActor.X = pointer.X - 25;
-                    newActor.Y = pointer.Y - 170;
+                    newActor.Pointer = pointer;
 
                     //Voeg toe aan de lijst.
                     _actorenLijst.Add(newActor);
@@ -58,6 +53,9 @@ namespace UC_Helper
                     //Maak een nieuw usecase obj
                     UseCase newUsecase = new UseCase();
                     Point pointer = PointToClient(Cursor.Position);
+                    newUsecase.Naam = "newUecase";
+                    newUsecase.Pointer = pointer;
+                    _usecaseLijst.Add(newUsecase);
                 }
             }
 
@@ -68,11 +66,24 @@ namespace UC_Helper
 
                 foreach (Actor actor in _actorenLijst)
                 {
-                    if (clickPointer.Y < actor.Y + 130 && clickPointer.Y > actor.Y - 100)
+                    if (clickPointer.Y > actor.Pointer.Y - 72 && clickPointer.Y < actor.Pointer.Y + 68)
                     {
+                        if (clickPointer.X > actor.Pointer.X - 20 && clickPointer.X < actor.Pointer.X + 31)
+                        {
+                            ActorScherm niewScherm = new ActorScherm(actor, this);
+                            niewScherm.Show();
+                        }
                     }
                 }
+
+                foreach (UseCase uc in _usecaseLijst)
+                {
+                    MessageBox.Show(uc.Naam);
+                }
             }
+
+            //Herlaad het paintpanel
+            PaintPanel.Invalidate();
         }
 
         private void DrawObjects(PaintEventArgs e)
@@ -80,19 +91,41 @@ namespace UC_Helper
             foreach (Actor a in _actorenLijst)
             {
                 //Teken actor poppetje
-                e.Graphics.DrawImage(_actorImage, new Point((a.X), (a.Y)));
+                Point newPointer = a.Pointer;
+                newPointer.X = newPointer.X - 35;
+                newPointer.Y = newPointer.Y - 200;
+
+                e.Graphics.DrawImage(_actorImage, newPointer);
 
                 //Locatie van de tekst
-                Point textPointer = new Point((a.X), (a.Y + 130));
+                Point textPointer = newPointer;
+                textPointer.Y = newPointer.Y + 130;
 
                 //Teken de tekst
                 e.Graphics.DrawString(a.Naam, this.Font, _brush, textPointer);
+            }
+
+            foreach (UseCase uc in _usecaseLijst)
+            {
+                //TODO: Teken elips hier
             }
         }
 
         private void PaintPanel_Paint(object sender, PaintEventArgs e)
         {
             DrawObjects(e);
+        }
+
+        public List<Actor> ActorenLijst
+        {
+            get { return _actorenLijst; }
+            set { _actorenLijst = value; }
+        }
+
+        public void Repaint()
+        {
+            //Herlaad het paintpanel
+            PaintPanel.Invalidate();
         }
     }
 }
