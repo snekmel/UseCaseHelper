@@ -1,1 +1,10 @@
 C:\Users\Lars Lemkens\Desktop\UC Helper\bin\Debug\UC Helper.exe.config
+C:\Users\Lars Lemkens\Desktop\UseCaseHelper\UseCaseHelper\bin\Debug\UC Helper.exe.config
+C:\Users\Lars Lemkens\Desktop\UseCaseHelper\UseCaseHelper\bin\Debug\UC Helper.exe
+C:\Users\Lars Lemkens\Desktop\UseCaseHelper\UseCaseHelper\bin\Debug\UC Helper.pdb
+C:\Users\Lars Lemkens\Desktop\UseCaseHelper\UseCaseHelper\obj\Debug\UC Helper.csprojResolveAssemblyReference.cache
+C:\Users\Lars Lemkens\Desktop\UseCaseHelper\UseCaseHelper\obj\Debug\UC_Helper.Properties.Resources.resources
+C:\Users\Lars Lemkens\Desktop\UseCaseHelper\UseCaseHelper\obj\Debug\UC Helper.csproj.GenerateResource.Cache
+C:\Users\Lars Lemkens\Desktop\UseCaseHelper\UseCaseHelper\obj\Debug\UC Helper.exe
+C:\Users\Lars Lemkens\Desktop\UseCaseHelper\UseCaseHelper\obj\Debug\UC Helper.pdb
+C:\Users\Lars Lemkens\Desktop\UseCaseHelper\UseCaseHelper\obj\Debug\UC_Helper.MainScreen.resources
