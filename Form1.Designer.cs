@@ -147,6 +147,7 @@
             this.PaintPanel.Size = new System.Drawing.Size(875, 406);
             this.PaintPanel.TabIndex = 4;
             this.PaintPanel.Click += new System.EventHandler(this.PaintPanel_Click);
+            this.PaintPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintPanel_Paint);
             // 
             // MainScreen
             // 

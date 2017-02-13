@@ -15,6 +15,20 @@ namespace UC_Helper.Models
         private string _beschrijving;
         private string _uitzonderingen;
         private string _resultaat;
+        private int _y;
+        private int _x;
+
+        public int X
+        {
+            get { return _x; }
+            set { _x = value; }
+        }
+
+        public int Y
+        {
+            get { return _y; }
+            set { _y = value; }
+        }
 
         public string Resultaat
         {
