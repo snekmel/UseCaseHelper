@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UC_Helper.Models
 {
-    internal class UseCase
+    public class UseCase
     {
         private string _naam;
         private string _samenvatting;

@@ -15,15 +15,32 @@ namespace UC_Helper
     {
         private List<Actor> _actorenLijst;
         private List<UseCase> _usecaseLijst;
+        private List<Line> _lineLijst;
         private Image _actorImage = Image.FromFile(@"C:\Users\Lars Lemkens\Desktop\UseCaseHelper\UseCaseHelper\actorImg.png");
         private Brush _brush;
+        private Pen _pen;
+
+        public List<Actor> ActorenLijst
+        {
+            get { return _actorenLijst; }
+            set { _actorenLijst = value; }
+        }
+
+        public List<UseCase> UseCaseLijst
+        {
+            get { return _usecaseLijst; }
+            set { _usecaseLijst = value; }
+        }
 
         public MainScreen()
         {
             InitializeComponent();
             _actorenLijst = new List<Actor>();
             _usecaseLijst = new List<UseCase>();
+            _lineLijst = new List<Line>();
+
             _brush = new SolidBrush(Color.DarkBlue);
+            _pen = new Pen(_brush, 5);
         }
 
         private void PaintPanel_Click(object sender, EventArgs e)
@@ -35,7 +52,7 @@ namespace UC_Helper
                 if (ActorSwitch.Checked)
                 {
                     //Maak een nieuwe actor aan
-                    Actor newActor = new Actor("Actornaam");
+                    Actor newActor = new Actor("Actornaam" + _actorenLijst.Count);
 
                     Point pointer = PointToClient(Cursor.Position);
                     newActor.Pointer = pointer;
@@ -53,17 +70,50 @@ namespace UC_Helper
                     //Maak een nieuw usecase obj
                     UseCase newUsecase = new UseCase();
                     Point pointer = PointToClient(Cursor.Position);
-                    newUsecase.Naam = "newUecase";
+                    newUsecase.Naam = "Usecase" + _usecaseLijst.Count;
                     newUsecase.Pointer = pointer;
                     _usecaseLijst.Add(newUsecase);
+
+                    //herlaad
+                    PaintPanel.Invalidate();
                 }
+
+                //Maak een lijn
+                else if (LineSwitch.Checked)
+                {
+                    //als het de eerste lijn is maak een nieuw obj
+                    if (_lineLijst.Count == 0)
+                    {
+                        Line newLine = new Line();
+                        newLine.BeginPunt = PaintPanel.PointToClient(Cursor.Position);
+                        _lineLijst.Add(newLine);
+                    }
+                    else
+                    {
+                        Line lastLineInList = _lineLijst[_lineLijst.Count - 1];
+                        if (!lastLineInList.HasBothPoints())
+                        {
+                            lastLineInList.EindPunt = PaintPanel.PointToClient(Cursor.Position);
+                            _lineLijst[_lineLijst.Count - 1] = lastLineInList;
+                        }
+                        else
+                        {
+                            Line newLine = new Line();
+                            newLine.BeginPunt = PaintPanel.PointToClient(Cursor.Position);
+                            _lineLijst.Add(newLine);
+                        }
+                    }
+                }
+
+                //Herlaad het paintpanel
+                PaintPanel.Invalidate();
             }
 
             //Edit
             else if (selectSwitch.Checked)
             {
+                //Haal de geselecteerde actor op en geef door naar actorscherm
                 Point clickPointer = PointToClient(Cursor.Position);
-
                 foreach (Actor actor in _actorenLijst)
                 {
                     if (clickPointer.Y > actor.Pointer.Y - 72 && clickPointer.Y < actor.Pointer.Y + 68)
@@ -76,14 +126,19 @@ namespace UC_Helper
                     }
                 }
 
+                //Haal de geselecteerde usecase op en geef door aan usecasescherm.
                 foreach (UseCase uc in _usecaseLijst)
                 {
-                    MessageBox.Show(uc.Naam);
+                    if (clickPointer.Y > uc.Pointer.Y - 40 && clickPointer.Y < uc.Pointer.Y + 40)
+                    {
+                        if (clickPointer.X > uc.Pointer.X - 100 && clickPointer.X < uc.Pointer.X + 100)
+                        {
+                            UsecaseScherm niewScherm = new UsecaseScherm(uc, this);
+                            niewScherm.Show();
+                        }
+                    }
                 }
             }
-
-            //Herlaad het paintpanel
-            PaintPanel.Invalidate();
         }
 
         private void DrawObjects(PaintEventArgs e)
@@ -107,19 +162,35 @@ namespace UC_Helper
 
             foreach (UseCase uc in _usecaseLijst)
             {
-                //TODO: Teken elips hier
+                Point drawPointer = uc.Pointer;
+
+                //Positioneer de ellipse op de click
+                drawPointer.X = drawPointer.X - 110;
+                drawPointer.Y = drawPointer.Y - 175;
+
+                e.Graphics.DrawEllipse(_pen, drawPointer.X, drawPointer.Y, 200, 100);
+
+                //Positioneer pointer voor tekst
+                Point textPointer = drawPointer;
+                textPointer.Y = drawPointer.Y + 40;
+                textPointer.X = drawPointer.X + 70;
+
+                // teken tekst
+                e.Graphics.DrawString(uc.Naam, this.Font, _brush, textPointer);
+            }
+
+            foreach (Line lijn in _lineLijst)
+            {
+                if (lijn.HasBothPoints())
+                {
+                    e.Graphics.DrawLine(_pen, lijn.BeginPunt, lijn.EindPunt);
+                }
             }
         }
 
         private void PaintPanel_Paint(object sender, PaintEventArgs e)
         {
             DrawObjects(e);
-        }
-
-        public List<Actor> ActorenLijst
-        {
-            get { return _actorenLijst; }
-            set { _actorenLijst = value; }
         }
 
         public void Repaint()

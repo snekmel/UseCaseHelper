@@ -58,9 +58,16 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Actor.cs" />
+    <Compile Include="Models\Line.cs" />
     <Compile Include="Models\UseCase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsecaseScherm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UsecaseScherm.Designer.cs">
+      <DependentUpon>UsecaseScherm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ActorScherm.resx">
       <DependentUpon>ActorScherm.cs</DependentUpon>
     </EmbeddedResource>
@@ -76,6 +83,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UsecaseScherm.resx">
+      <DependentUpon>UsecaseScherm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

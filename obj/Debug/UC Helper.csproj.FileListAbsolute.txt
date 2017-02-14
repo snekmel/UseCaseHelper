@@ -9,3 +9,4 @@ C:\Users\Lars Lemkens\Desktop\UseCaseHelper\UseCaseHelper\obj\Debug\UC Helper.ex
 C:\Users\Lars Lemkens\Desktop\UseCaseHelper\UseCaseHelper\obj\Debug\UC Helper.pdb
 C:\Users\Lars Lemkens\Desktop\UseCaseHelper\UseCaseHelper\obj\Debug\UC_Helper.MainScreen.resources
 C:\Users\Lars Lemkens\Desktop\UseCaseHelper\UseCaseHelper\obj\Debug\UC_Helper.ActorScherm.resources
+C:\Users\Lars Lemkens\Desktop\UseCaseHelper\UseCaseHelper\obj\Debug\UC_Helper.UsecaseScherm.resources
