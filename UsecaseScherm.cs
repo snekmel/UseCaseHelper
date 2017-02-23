@@ -29,7 +29,7 @@ namespace UC_Helper
         {
             ucNaamTb.Text = _uc.Naam;
             ucSamenvattingTb.Text = _uc.Samenvatting;
-            actorenNaamTb.Text = "";
+            actorenNaamTb.Text = _uc.Actoren;
             ucAannamentb.Text = _uc.Aannamen;
             ucBeschrijvingTb.Text = _uc.Beschrijving;
             ucUitzonderingTb.Text = _uc.Uitzondering;
@@ -44,7 +44,7 @@ namespace UC_Helper
                 {
                     _uc.Naam = ucNaamTb.Text;
                     _uc.Samenvatting = ucSamenvattingTb.Text;
-                    //actornaam
+                    _uc.Actoren = actorenNaamTb.Text;
                     _uc.Aannamen = ucAannamentb.Text;
                     _uc.Beschrijving = ucBeschrijvingTb.Text;
                     _uc.Uitzondering = ucUitzonderingTb.Text;

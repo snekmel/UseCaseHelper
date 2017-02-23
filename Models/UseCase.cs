@@ -11,12 +11,18 @@ namespace UC_Helper.Models
     {
         private string _naam;
         private string _samenvatting;
-        private List<string> _actoren;
         private string _aannamen;
         private string _beschrijving;
         private string _uitzonderingen;
         private string _resultaat;
         private Point _pointer;
+        private string _actoren;
+
+        public string Actoren
+        {
+            get { return _actoren; }
+            set { _actoren = value; }
+        }
 
         public Point Pointer
         {

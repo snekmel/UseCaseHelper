@@ -198,5 +198,14 @@ namespace UC_Helper
             //Herlaad het paintpanel
             PaintPanel.Invalidate();
         }
+
+        private void removeBtn_Click(object sender, EventArgs e)
+        {
+            if (_lineLijst.Count > 0)
+            {
+                _lineLijst.Remove(_lineLijst[_lineLijst.Count - 1]);
+                PaintPanel.Invalidate();
+            }
+        }
     }
 }
